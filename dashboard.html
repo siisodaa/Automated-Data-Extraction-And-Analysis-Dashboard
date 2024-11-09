@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <h1>Data Analysis Dashboard</h1>
+    <div id="chart"></div>
+
+    <script>
+        // Fetch data for Plotly chart
+        fetch("/data")
+            .then(response => response.json())
+            .then(data => {
+                var plotData = JSON.parse(data);
+                Plotly.newPlot('chart', plotData.data, plotData.layout);
+            })
+            .catch(error => console.error("Error loading data:", error));
+    </script>
+</body>
+</html>
